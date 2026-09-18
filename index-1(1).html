@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Netflix</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Дисклеймер 1 -->
+  <div class="disclaimer">
+    ⚠️ ЭТО РОФЛ / ФЕЙК-САЙТ. Не настоящий Netflix. Никаких реальных платежей и подписок. Только для развлечения.
+  </div>
+
+  <header>
+    <div class="logo">NETFLIX</div>
+    <nav>
+      <a href="#catalog">Каталог</a>
+      <a href="#cabinet">Кабинет</a>
+      <a href="https://macks350.github.io/T-Bank/" target="_blank">Демо Т-Банк</a>
+      <span id="user-area">
+        <button class="auth-btn" onclick="openAuth('login')">Войти</button>
+        <button class="auth-btn primary" onclick="openAuth('register')">Регистрация</button>
+      </span>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Ирония судьбы</h1>
+      <p>Культовая новогодняя комедия Эльдара Рязанова. Официально от Мосфильма — смотри бесплатно.</p>
+      <button class="btn btn-play" onclick="openMovie(4)">▶ Смотреть 1 серию</button>
+      <button class="btn btn-info" onclick="openMovie(5)">2 серия</button>
+    </div>
+  </section>
+
+  <section class="section" id="catalog">
+    <h2>Советское / российское кино (СССР → 70–80-е)</h2>
+    <div class="row" id="row-ussr"></div>
+  </section>
+
+  <section class="section">
+    <h2>Рокки + Рэмбо (классика боевиков)</h2>
+    <div class="row" id="row-rocky"></div>
+  </section>
+
+  <section class="section">
+    <h2>Западная классика (публичное достояние)</h2>
+    <div class="row" id="row-west"></div>
+  </section>
+
+  <!-- Кабинет / Подписка -->
+  <div class="panel" id="cabinet">
+    <h3>Личный кабинет</h3>
+    <p>
+      Нажимая кнопку ниже, с виртуального счёта списывается 50 000 ₽.
+      Баланс хранится только в этом браузере.
+    </p>
+
+    <div class="sub-status" id="sub-status">
+      Виртуальный баланс: <strong id="wallet-balance">125 430 ₽</strong><br>
+      Статус подписки: <strong id="sub-text" class="inactive">не активна</strong><br>
+      <span id="last-charge"></span>
+    </div>
+
+    <button class="btn btn-play" onclick="activateSub()">Включить / продлить «подписку» на неделю</button>
+    <button class="btn btn-info" style="margin-left:8px" onclick="resetSub()">Сбросить</button>
+
+    <div class="history" id="history-block" style="display:none;">
+      <h4>История списаний</h4>
+      <div id="history-list"></div>
+    </div>
+  </div>
+
+  <footer>
+    <p>2026 · <a href="https://macks350.github.io/T-Bank/" target="_blank">Демо Т-Банк</a> · учебный макет, не настоящий Netflix</p>
+  </footer>
+
+  <!-- Auth modal -->
+  <div class="auth-modal" id="auth-modal">
+    <div class="auth-box">
+      <h3 id="auth-title">Вход</h3>
+      <div class="auth-error" id="auth-error"></div>
+      <input type="text" id="auth-login" placeholder="Логин" autocomplete="username">
+      <input type="password" id="auth-pass" placeholder="Пароль" autocomplete="current-password">
+      <button class="btn btn-play" id="auth-submit" onclick="submitAuth()">Войти</button>
+      <div class="auth-switch" id="auth-switch">
+        Нет аккаунта? <a onclick="openAuth('register')">Зарегистрироваться</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal player -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-title">Фильм</h3>
+        <button class="close-btn" onclick="closeModal()">×</button>
+      </div>
+      <div class="video-wrap">
+        <iframe id="player" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div id="player-fallback" class="player-fallback">
+          <div class="fallback-code">404</div>
+          <div class="fallback-text">Видео не загрузилось</div>
+          <div class="fallback-sub">Подождите пожалуйста… или попробуйте ещё раз</div>
+        </div>
+      </div>
+      <div class="modal-info" id="modal-desc"></div>
+    </div>
+  </div>
+  <script src="movies.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
